@@ -1,6 +1,6 @@
 # Brawl stats discord bot
 
-Self-hosted discord bot for getting in-game statistics; built in python, using the ``nextcord`` package (among other packages)
+Self-hosted discord bot for getting in-game statistics; built in python, using the ``nextcord`` framework.
 
 Just install all prerequisites, and then run
 
