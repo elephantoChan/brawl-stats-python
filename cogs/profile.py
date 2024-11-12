@@ -13,12 +13,11 @@ class ProfileCog(commands.Cog):
         self.bot = bot
 
     @commands.command(name="profile")
-    async def profile(self, context, tag: str):
-        PLAYER = Player(tag)
+    async def profile(self, context, *args):
+        PLAYER = Player(args[0])
         log(
             f"User {context.author}({context.message.author.id}) used command [[{context.command} {context.args[2]}]]"
         )
-
         # Calculations here.
         season_reset: int = 0
         total_p11_brawlers: int = 0
@@ -59,7 +58,7 @@ class ProfileCog(commands.Cog):
                 else 2000
             )
 
-        embed = {
+        embed: dict = {
             "color": PLAYER.name_color,
             "title": PLAYER.name,
             "description": f"{PLAYER}",

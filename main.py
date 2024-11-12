@@ -34,7 +34,7 @@ class MyBot(commands.Bot):
                     log(f"Failed to load cog {cog_name}: {e}", level="ERROR")
 
     async def on_ready(self):
-        log(f"Logged in as {self.user} (ID: {self.user.id})")
+        log(f"Logged in as {self.user}")
 
 
 intents = nextcord.Intents.default()

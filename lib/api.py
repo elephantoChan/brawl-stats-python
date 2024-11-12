@@ -95,7 +95,7 @@ class Player:
 
 
 class PlayerBrawler:
-    def __init__(self, brawler: object):
+    def __init__(self, brawler: dict):
         self.id = brawler["id"]
         self.name = brawler["name"]
         self.power = brawler["power"]
@@ -114,6 +114,6 @@ class PlayerBrawler:
 
 
 class PlayerBrawlerAccessory:
-    def __init__(self, accs: object):
+    def __init__(self, accs: dict):
         self.id = accs["id"]
         self.name = accs["name"]
