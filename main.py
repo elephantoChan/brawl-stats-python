@@ -1,13 +1,10 @@
+import json
 import os
 
 import nextcord
 from nextcord.ext import commands
 
-from config_log.config import Config
-from config_log.log import Log
-from config_log.log import LogLevels as ll
-
-logging = Log()  # Why am I even doing this :(
+from log_help.log import log
 
 
 class MyBot(commands.Bot):
@@ -32,17 +29,20 @@ class MyBot(commands.Bot):
                 cog_name = filename[:-3]
                 try:
                     self.load_extension(f"cogs.{cog_name}")
-                    logging.log(f"Loaded cog: {cog_name}", level=ll.info)
+                    log(f"Loaded cog: {cog_name}")
                 except Exception as e:
-                    logging.log(f"Failed to load cog {cog_name}: {e}", level=ll.err)
+                    log(f"Failed to load cog {cog_name}: {e}", level="ERROR")
 
     async def on_ready(self):
-        logging.log(f"Logged in as {self.user} (ID: {self.user.id})", level=ll.info)
+        log(f"Logged in as {self.user} (ID: {self.user.id})")
 
 
 intents = nextcord.Intents.default()
 intents.message_content = True
 client = MyBot("bs ", intents=intents)
 
-config = Config()
-client.run(config.discord_test())
+token = ""
+with open("env.json", "r") as config:
+    data = json.loads(config.read())
+    token = data["test_discord_token"]
+client.run(token)
